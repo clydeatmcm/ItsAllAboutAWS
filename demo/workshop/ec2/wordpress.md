@@ -2,16 +2,13 @@
 
 This tutorial walks you through setting up a **WordPress website on AWS EC2** using the **12-month Free Tier**. You’ll get a domain name connected, configure Nginx, MySQL, and PHP (LEMP stack), and secure your site with a free SSL certificate from Let’s Encrypt.
 
----
 
-## ✅ Prerequisites
+## Prerequisites
 
 * An [AWS Free Tier account](https://aws.amazon.com/free)
 * A **domain name** (from Google Domains, Namecheap, GoDaddy, etc.)
 * Basic familiarity with Linux commands
 * SSH client (Terminal on macOS/Linux or PuTTY/Windows PowerShell)
-
----
 
 ## 1. Launch an EC2 Instance
 
@@ -30,8 +27,6 @@ This tutorial walks you through setting up a **WordPress website on AWS EC2** us
 6. Create and download a **key pair** (e.g., `aws-ec2.pem`).
 7. Launch the instance and copy its **Public IP Address**.
 
----
-
 ## 2. Point Your Domain to EC2
 
 At your domain registrar (Google Domains, Namecheap, etc.):
@@ -46,8 +41,6 @@ At your domain registrar (Google Domains, Namecheap, etc.):
 
 You can check propagation using [DNSChecker.org](https://dnschecker.org).
 
----
-
 ## 3. Connect to Your EC2 Instance
 
 ```bash
@@ -61,15 +54,11 @@ chmod 400 aws-ec2.pem
 ssh -i aws-ec2.pem ubuntu@<EC2_Public_IP>
 ```
 
----
-
 ## 4. Update & Upgrade Server
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
-
----
 
 ## 5. Install LEMP Stack (Linux, Nginx, MariaDB, PHP)
 
@@ -84,8 +73,6 @@ systemctl status nginx
 ```
 
 Visit `http://<EC2_Public_IP>` → You should see the **Nginx Welcome Page**.
-
----
 
 ## 6. Install WordPress
 
@@ -103,8 +90,6 @@ sudo chown -R www-data:www-data wordpress
 sudo find wordpress/ -type d -exec chmod 755 {} \;
 sudo find wordpress/ -type f -exec chmod 644 {} \;
 ```
-
----
 
 ## 7. Configure MySQL for WordPress
 
@@ -125,8 +110,6 @@ GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wp_user'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 ```
-
----
 
 ## 8. Configure Nginx for WordPress
 
@@ -169,8 +152,6 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
----
-
 ## 9. Run WordPress Installer
 
 Visit `http://yourdomain.com` → You should see the WordPress setup page.
@@ -184,16 +165,12 @@ Enter:
 
 Complete installation → set your **site title, admin user, and password**.
 
----
-
 ## 10. Install Required PHP Modules
 
 ```bash
 sudo apt install -y php-curl php-dom php-bcmath php-imagick php-zip php-gd
 sudo systemctl restart php7.4-fpm
 ```
-
----
 
 ## 11. Secure with SSL (Let’s Encrypt + Certbot)
 
@@ -223,8 +200,6 @@ Check renewal:
 systemctl list-timers | grep certbot
 ```
 
----
-
 ## 12. Final WordPress Settings
 
 * Log in to **WordPress Dashboard** → `https://yourdomain.com/wp-admin`
@@ -232,7 +207,7 @@ systemctl list-timers | grep certbot
 
 ---
 
-## 🎉 Done!
+## Done!
 
 You now have:
 
@@ -242,7 +217,7 @@ You now have:
 
 ---
 
-👉 Next steps:
+Next steps:
 
 * Customize your WordPress theme
 * Install essential plugins (SEO, caching, backups)
