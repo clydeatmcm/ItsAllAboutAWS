@@ -1,4 +1,4 @@
-# 🚀 Hosting WordPress on AWS EC2 Free Tier (Step-by-Step Guide)
+# Hosting WordPress on AWS EC2 Free Tier (Step-by-Step Guide)
 
 This tutorial walks you through setting up a **WordPress website on AWS EC2** using the **12-month Free Tier**. You’ll get a domain name connected, configure Nginx, MySQL, and PHP (LEMP stack), and secure your site with a free SSL certificate from Let’s Encrypt.
 
